@@ -172,7 +172,7 @@ class GroupMaker {
         let currentGroupIndex = 0;
         
         while (unassigned.length > 0) {
-            let bestMember = null;
+            let candidateMembers = [];
             let lowestConflictScore = Infinity;
 
             // 各未配置メンバーについて、現在のグループに入った場合の競合スコアを計算
@@ -186,11 +186,20 @@ class GroupMaker {
 
                 if (conflictScore < lowestConflictScore) {
                     lowestConflictScore = conflictScore;
-                    bestMember = member;
+                    candidateMembers = [member];
+                } else if (conflictScore === lowestConflictScore) {
+                    candidateMembers.push(member);
                 }
             }
 
-            // 最も競合の少ないメンバーをグループに追加
+            // 同じスコアのメンバーからランダムに選択
+            let bestMember = null;
+            if (candidateMembers.length > 0) {
+                const randomIndex = Math.floor(Math.random() * candidateMembers.length);
+                bestMember = candidateMembers[randomIndex];
+            }
+
+            // 選択されたメンバーをグループに追加
             if (bestMember) {
                 groups[currentGroupIndex].push(bestMember);
                 unassigned.splice(unassigned.indexOf(bestMember), 1);
