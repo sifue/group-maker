@@ -71,7 +71,7 @@
 
 3. **プロジェクトのデプロイ**
    ```bash
-   wrangler pages publish
+   npx wrangler pages deploy ./ --commit-dirty=true
    ```
 
 #### wrangler.tomlの設定
@@ -80,15 +80,8 @@
 
 ```toml
 name = "group-maker"
-main = "index.html"
 compatibility_date = "2024-01-01"
-
-[env.production.vars]
-ENVIRONMENT = "production"
-
-[[assets]]
-bucket = "./public"
-include = ["**/*"]
+pages_build_output_dir = "./"
 ```
 
 ### その他のデプロイ方法
