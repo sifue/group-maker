@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>グループ分けツール - Gruppo Maker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-roboto { font-family: 'Roboto', sans-serif; }
+        .bg-cafe { background: linear-gradient(135deg, #8B4513 0%, #D2B48C  25%, #F5E6D3 50%, #E6D7C3 75%, #CD853F 100%); }
+        .text-espresso { color: #3C2415; }
+        .bg-cream { background-color: #FAF7F0; }
+        .bg-cappuccino { background-color: #E6D7C3; }
+        .shadow-cafe { box-shadow: 0 8px 25px rgba(139, 69, 19, 0.15); }
+    </style>
+</head>
+<body class="bg-cafe min-h-screen font-roboto">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- ヘッダー -->
+        <header class="text-center mb-8">
+            <h1 class="font-playfair text-4xl md:text-5xl font-bold text-white mb-2 drop-shadow-lg">
+                グループメーカー
+            </h1>
+            <p class="text-cream text-lg md:text-xl font-light">
+                おしゃれなグループ分けツール
+            </p>
+        </header>
+
+        <!-- メインコンテンツ -->
+        <div class="bg-cream rounded-2xl shadow-cafe p-6 md:p-8 mb-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- 入力エリア -->
+                <div class="space-y-6">
+                    <div>
+                        <label for="memberInput" class="block text-espresso text-lg font-medium mb-3">
+                            📝 メンバー名を入力
+                        </label>
+                        <textarea 
+                            id="memberInput" 
+                            class="w-full h-40 p-4 border-2 border-cappuccino rounded-xl resize-none focus:border-amber-400 focus:ring-2 focus:ring-amber-200 text-espresso font-roboto"
+                            placeholder="田中太郎&#10;佐藤花子&#10;鈴木次郎&#10;&#10;（1行に1人ずつ入力してください）"
+                        ></textarea>
+                    </div>
+
+                    <div>
+                        <label for="groupCount" class="block text-espresso text-lg font-medium mb-3">
+                            🎯 グループ数を選択
+                        </label>
+                        <select 
+                            id="groupCount" 
+                            class="w-full p-4 border-2 border-cappuccino rounded-xl focus:border-amber-400 focus:ring-2 focus:ring-amber-200 text-espresso font-roboto bg-white"
+                        >
+                            <option value="2">2グループ</option>
+                            <option value="3">3グループ</option>
+                            <option value="4">4グループ</option>
+                            <option value="5">5グループ</option>
+                            <option value="6">6グループ</option>
+                            <option value="7">7グループ</option>
+                            <option value="8">8グループ</option>
+                            <option value="9">9グループ</option>
+                            <option value="10">10グループ</option>
+                            <option value="11">11グループ</option>
+                            <option value="12">12グループ</option>
+                            <option value="13">13グループ</option>
+                            <option value="14">14グループ</option>
+                            <option value="15">15グループ</option>
+                            <option value="16">16グループ</option>
+                        </select>
+                    </div>
+
+                    <button 
+                        id="createGroupsBtn" 
+                        class="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-medium py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
+                    >
+                        ☕ グループを作成する
+                    </button>
+                </div>
+
+                <!-- 結果表示エリア -->
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-espresso text-lg font-medium mb-3">
+                            🎪 グループ分け結果
+                        </h3>
+                        <div id="groupResults" class="space-y-4 min-h-40">
+                            <p class="text-gray-500 text-center py-8 italic">
+                                まだグループ分けされていません
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 履歴エリア -->
+        <div class="bg-cream rounded-2xl shadow-cafe p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-espresso text-xl font-medium font-playfair">
+                    📚 グループ分け履歴
+                </h3>
+                <button 
+                    id="clearHistoryBtn" 
+                    class="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md text-sm"
+                >
+                    🗑️ 履歴を削除
+                </button>
+            </div>
+            <div id="historyContainer" class="space-y-4">
+                <p class="text-gray-500 text-center py-4 italic">
+                    履歴はまだありません
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
